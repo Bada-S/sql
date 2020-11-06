@@ -32,4 +32,16 @@ query3 = """
     Limit 20
 """
 
-#average items per character
+#average weapons per character
+query4 = """
+SELECT avg(weapon_count) as avg_weapons_per_char
+FROM (
+	SELECT 
+		c.character_id,
+		count(distinct w.item_ptr_id) as weapon_count
+	FROM charactercreator_character c
+	LEFT JOIN charactercreator_character_inventory inv on c.character_id = inv.character_id
+	LEFT JOIN armory_weapon w on inv.item_id = w.item_ptr_id
+	GROUP BY c.character_id
+) subq
+"""
