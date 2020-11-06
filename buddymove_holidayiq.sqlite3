@@ -1,0 +1,4 @@
+import pandas
+
+df = pd.read_csv(buddymove_holidayiq.csv)
+df.to_sql
